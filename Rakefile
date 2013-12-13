@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'rubygems'
 require 'bundler'
 begin
@@ -17,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "tinyeditor_rails"
   gem.homepage = "http://github.com/yunanhelmy/tinyeditor_rails"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Javascript WYSIWYG using tinyEditor"
+  gem.description = "Javascript WYSIWYG using tinyEditor"
   gem.email = "m.yunan.helmy@gmail.com"
   gem.authors = ["yunanhelmy"]
   # dependencies defined in Gemfile
@@ -30,14 +28,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
 end
 
 task :default => :test
