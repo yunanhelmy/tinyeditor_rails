@@ -1,1 +1,2 @@
-//require tiny.editor
+//= require tiny.editor.packed
+//= require_self
