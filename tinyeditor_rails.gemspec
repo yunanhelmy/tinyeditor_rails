@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "tinyeditor_rails"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["yunanhelmy"]
-  s.date = "2013-12-13"
+  s.date = "2014-01-17"
   s.description = "Javascript WYSIWYG using tinyEditor"
   s.email = "m.yunan.helmy@gmail.com"
   s.extra_rdoc_files = [
@@ -17,21 +17,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".document",
-    "Gemfile",
-    "Gemfile.lock",
-    "LICENSE.txt",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION",
-    "app/assets/javascripts/tinyeditor_rails/main.js",
-    "lib/tinyeditor_rails.rb",
-    "vendor/assets/images/header-bg.gif",
-    "vendor/assets/images/icons.png",
-    "vendor/assets/images/resize.gif",
-    "vendor/assets/javascripts/tiny.editor.js",
-    "vendor/assets/javascripts/tiny.editor.packed.js",
-    "vendor/assets/stylesheets/tinyeditor.css"
+    "lib/tinyeditor_rails.rb"
   ]
   s.homepage = "http://github.com/yunanhelmy/tinyeditor_rails"
   s.licenses = ["MIT"]
