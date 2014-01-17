@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "tinyeditor_rails"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["yunanhelmy"]
@@ -17,7 +17,22 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "lib/tinyeditor_rails.rb"
+    ".document",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
+    "README.rdoc",
+    "Rakefile",
+    "VERSION",
+    "app/assets/javascripts/tinyeditor_rails/main.js",
+    "lib/tinyeditor_rails.rb",
+    "tinyeditor_rails.gemspec",
+    "vendor/assets/images/images/header-bg.gif",
+    "vendor/assets/images/images/icons.png",
+    "vendor/assets/images/images/resize.gif",
+    "vendor/assets/javascripts/tinyeditor_rails/packed.js",
+    "vendor/assets/javascripts/tinyeditor_rails/tinyeditor.js",
+    "vendor/assets/stylesheets/tinyeditor_rails/style.css"
   ]
   s.homepage = "http://github.com/yunanhelmy/tinyeditor_rails"
   s.licenses = ["MIT"]
