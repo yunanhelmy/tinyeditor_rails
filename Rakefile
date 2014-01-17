@@ -19,6 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = "Javascript WYSIWYG using tinyEditor"
   gem.email = "m.yunan.helmy@gmail.com"
   gem.authors = ["yunanhelmy"]
+  gem.files = Dir.glob('lib/**/*.rb')
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
