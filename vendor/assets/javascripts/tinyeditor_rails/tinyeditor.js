@@ -102,11 +102,10 @@ TINY.editor=function(){
 			p.appendChild(f)
 		}
 		this.e=this.i.contentWindow.document; this.e.open();
-		//added bodyname
-		var m='<html><head>', bodyid=obj.bodyid?" id=\""+obj.bodyid+"\"":"", bodyname=obj.bodyname?" name=\""+obj.bodyname+"\"":"";
+		var m='<html><head>', bodyid=obj.bodyid?" id=\""+obj.bodyid+"\"":"";
 		if(obj.cssfile){m+='<link rel="stylesheet" href="'+obj.cssfile+'" />'}
 		if(obj.css){m+='<style type="text/css">'+obj.css+'</style>'}
-		m+='</head><body'+bodyid+' '+bodyname+'>'+(obj.content||this.t.value);
+		m+='</head><body class="tinyeditor_body" '+bodyid+'>'+(obj.content||this.t.value);
 		m+='</body></html>';
 		this.e.write(m);
 		this.e.close(); this.e.designMode='on'; this.d=1;
@@ -114,7 +113,47 @@ TINY.editor=function(){
 			try{this.e.execCommand("styleWithCSS",0,0)}
 			catch(e){try{this.e.execCommand("useCSS",0,1)}catch(e){}}
 		}
+		function upTo(el,tagName){
+			tagName = tagName.toLowerCase();
+			do {
+			    el = el.parentNode;
+			    if(typeof el.tagName != 'undefined'){
+			    	if (el.tagName.toLowerCase() == tagName) {
+				      return el;
+				    }
+			    }
+			} while (el.parentNode)  		
+		};
+		sync_target = this.t;
+		sync_source = this.i.contentWindow.document.body;
+		sync_source.addEventListener("blur",new Function(this.n+'.sync(sync_target,sync_source.innerHTML)'),true);
+		parentForm = upTo(sync_target,"form");
+		if(parentForm){
+			parentForm.addEventListener("submit",new Function(this.n+'.sync(sync_target,sync_source.innerHTML)'),true);
+		}
 	};
+	edit.prototype.sync=function(t,i){
+		var v= this.i.contentWindow.document.body.innerHTML;
+		v=v.replace(/<span class="apple-style-span">(.*)<\/span>/gi,'$1');
+		v=v.replace(/ class="apple-style-span"/gi,'');
+		v=v.replace(/<span style="">/gi,'');
+		v=v.replace(/<br>/gi,'<br />');
+		v=v.replace(/<br ?\/?>$/gi,'');
+		v=v.replace(/^<br ?\/?>/gi,'');
+		v=v.replace(/(<img [^>]+[^\/])>/gi,'$1 />');
+		v=v.replace(/<b\b[^>]*>(.*?)<\/b[^>]*>/gi,'<strong>$1</strong>');
+		v=v.replace(/<i\b[^>]*>(.*?)<\/i[^>]*>/gi,'<em>$1</em>');
+		v=v.replace(/<u\b[^>]*>(.*?)<\/u[^>]*>/gi,'<span style="text-decoration:underline">$1</span>');
+		v=v.replace(/<(b|strong|em|i|u) style="font-weight: normal;?">(.*)<\/(b|strong|em|i|u)>/gi,'$2');
+		v=v.replace(/<(b|strong|em|i|u) style="(.*)">(.*)<\/(b|strong|em|i|u)>/gi,'<span style="$2"><$4>$3</$4></span>');
+		v=v.replace(/<span style="font-weight: normal;?">(.*)<\/span>/gi,'$1');
+		v=v.replace(/<span style="font-weight: bold;?">(.*)<\/span>/gi,'<strong>$1</strong>');
+		v=v.replace(/<span style="font-style: italic;?">(.*)<\/span>/gi,'<em>$1</em>');
+		v=v.replace(/<span style="font-weight: bold;?">(.*)<\/span>|<b\b[^>]*>(.*?)<\/b[^>]*>/gi,'<strong>$1</strong>')
+		this.t.value = v
+		this.t.innerText = v
+		// console.log(this.t.value);
+	},
 	edit.prototype.print=function(){
 		this.i.contentWindow.print()
 	},
